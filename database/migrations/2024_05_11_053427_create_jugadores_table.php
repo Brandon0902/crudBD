@@ -8,7 +8,7 @@ class CreateJugadoresTable extends Migration
 {
     public function up()
     {
-        Schema::create('jugador', function (Blueprint $table) {
+        Schema::create('jugadores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->integer('numero_camiseta');
