@@ -1,34 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h2 class="mb-4">Jugadores</h2>
-            <table class="table table-striped table-bordered table-hover">
+<div class="container mx-auto">
+    <div class="py-8">
+        <h2 class="text-3xl font-semibold mb-6">Jugadores</h2>
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full border-collapse border border-gray-300">
                 <thead>
-                    <tr>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Número de Camiseta</th>
-                        <th class="text-center">Posición</th>
-                        <th class="text-center">Acciones</th>
+                    <tr class="bg-gray-200">
+                        <th class="px-4 py-2 text-left">Nombre</th>
+                        <th class="px-4 py-2 text-left">Número de Camiseta</th>
+                        <th class="px-4 py-2 text-left">Posición</th>
+                        <th class="px-4 py-2 text-left">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($jugadores as $jugador)
-                        <tr>
-                            <td class="text-center">{{ $jugador->nombre }}</td>
-                            <td class="text-center">{{ $jugador->numero_camiseta }}</td>
-                            <td class="text-center">{{ $jugador->posicion }}</td>
-                            <td class="text-center">
-                                <a href="{{ route('jugadores.edit', $jugador->id) }}" class="btn btn-warning">Editar</a>
-                                <form action="{{ route('jugadores.destroy', $jugador->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-300">{{ $jugador->nombre }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ $jugador->numero_camiseta }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ $jugador->posicion }}</td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <a href="{{ route('jugadores.edit', $jugador->id) }}" class="text-blue-500 hover:text-blue-700 mr-2">
+                                <i class="fas fa-pencil-alt"></i> 
+                            </a>
+                            <form action="{{ route('jugadores.destroy', $jugador->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-trash-alt"></i> 
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

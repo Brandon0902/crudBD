@@ -1,52 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container h-100">
-    <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-md-8">
-            <h2 class="text-center mb-4">Agregar Jugador</h2>
-            <form method="POST" action="{{ route('jugadores.store') }}" class="needs-validation" novalidate>
-                @csrf
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control border border-secondary" id="nombre" name="nombre" required>
-                    <div class="invalid-feedback">
-                        Por favor, ingresa el nombre del jugador.
-                    </div>
+<div class="container mx-auto">
+    <div class="py-8">
+        <h2 class="text-3xl font-semibold mb-6">Agregar Jugador</h2>
+        <form method="POST" action="{{ route('jugadores.store') }}" class="w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            @csrf
+            <div class="mb-4">
+                <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
+                <input type="text" class="form-input border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" id="nombre" name="nombre" required>
+                <div class="text-red-500 text-xs mt-1">
+                    @error('nombre') {{ $message }} @enderror
                 </div>
-                <div class="mb-3">
-                    <label for="numero_camiseta" class="form-label">Número de Camiseta</label>
-                    <input type="number" class="form-control border border-secondary" id="numero_camiseta" name="numero_camiseta" required>
-                    <div class="invalid-feedback">
-                        Por favor, ingresa el número de camiseta.
-                    </div>
+            </div>
+            <div class="mb-4">
+                <label for="numero_camiseta" class="block text-gray-700 text-sm font-bold mb-2">Número de Camiseta</label>
+                <input type="number" class="form-input border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" id="numero_camiseta" name="numero_camiseta" required>
+                <div class="text-red-500 text-xs mt-1">
+                    @error('numero_camiseta') {{ $message }} @enderror
                 </div>
-                <div class="mb-3">
-                    <label for="posicion" class="form-label">Posición</label>
-                    <input type="text" class="form-control border border-secondary" id="posicion" name="posicion" required>
-                    <div class="invalid-feedback">
-                        Por favor, selecciona la posición.
-                    </div>
+            </div>
+            <div class="mb-4">
+                <label for="posicion" class="block text-gray-700 text-sm font-bold mb-2">Posición</label>
+                <input type="text" class="form-input border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" id="posicion" name="posicion" required>
+                <div class="text-red-500 text-xs mt-1">
+                    @error('posicion') {{ $message }} @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Crear Jugador</button>
-            </form>
-        </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Crear Jugador</button>
+            </div>
+        </form>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var forms = document.querySelectorAll('.needs-validation');
-        var validationList = Array.from(forms);
-        validationList.forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    });
-</script>
 @endsection
